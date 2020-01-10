@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: routing-test
+logging:
+  level:
+    root: INFO
+
+
+amiga:
+  data:
+    jdbc:
+      datasource:
+        ds-es:
+          max-pool-size: 5
+          min-pool-size: 5
+          xa-data-source-class-name: org.h2.jdbcx.JdbcDataSource
+          use-driver-based-connection-validation: true
+          xa-properties:
+            user: 'sa'
+            password: ''
+            URL: jdbc:h2:mem:es;MODE=Oracle;IGNORECASE=TRUE;DB_CLOSE_ON_EXIT=FALSE;
+        ds-us: 
+          max-pool-size: 5
+          min-pool-size: 5
+          xa-data-source-class-name: org.h2.jdbcx.JdbcDataSource
+          use-driver-based-connection-validation: true
+          xa-properties:
+            user: 'sa'
+            password: ''
+            URL: jdbc:h2:mem:us;MODE=Oracle;IGNORECASE=TRUE;DB_CLOSE_ON_EXIT=FALSE;
