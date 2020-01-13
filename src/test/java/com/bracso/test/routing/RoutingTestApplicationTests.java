@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
@@ -78,18 +79,30 @@ public class RoutingTestApplicationTests {
         List<Future<String>> list = new ArrayList<>();
 
         Callable callable1 = () -> {
-            for (int i = 0; i < 1000; i++) {
+            for (int i = 0; i < 10; i++) {
                 LocaleContextHolder.setLocale(LOCALE_ES);
-                executeDummyQuery("routing", this.routingDatasource);
-//                LocaleContextHolder.clear();
+                executeDummyQuery("routing es" + i, this.routingDatasource);
+                LocaleContextHolder.clear();
             }
 
             return "OK " + "ES";
         };
 
+        Callable callable2 = () -> {
+            for (int i = 0; i < 10; i++) {
+                LocaleContextHolder.setLocale(Locale.US);
+                executeDummyQuery("routing us" + i, this.routingDatasource);
+                LocaleContextHolder.clear();
+            }
+
+            return "OK " + "US";
+        };
+
         for (int i = 0; i < 100; i++) {
-            Future<String> future = executor.submit(callable1);
-            list.add(future);
+            Future<String> future1 = executor.submit(callable1);
+            Future<String> future2 = executor.submit(callable2);
+            list.add(future1);
+            list.add(future2);
         }
 
         list.forEach((fut) -> {

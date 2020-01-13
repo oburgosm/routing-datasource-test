@@ -1,6 +1,9 @@
 spring:
   application:
     name: routing-test
+decorator:
+  datasource:
+    exclude-beans: routingDatasource
 logging:
   level:
     root: INFO
