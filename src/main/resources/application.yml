@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: routing-test
+logging:
+  level:
+    root: INFO
