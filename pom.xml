@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.bracso.test</groupId>
     <artifactId>routing-test</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>routing-test</name>
     <description>spring-boot app for testing integration between datasource-decorator and routing-datasource</description>
 
